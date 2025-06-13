@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{basepage::layout(~{::title}, ~{::section})}">
+
+<head>
+    <title th:fragment="title">About - Krushna Bazzar</title>
+</head>
+
+<body>
+<section style="padding-top: 80px;">
+
+    <div class="container mt-4">
+
+        <!-- Lord Krishna Image -->
+        <div class="text-center mb-5">
+            <img th:src="@{/images/krushna.jpg}" alt="Lord Krishna"
+                 class="img-fluid rounded shadow" style="max-width: 300px;">
+        </div>
+
+        <!-- About Content -->
+        <div class="text-center">
+            <h1 class="text-primary mb-3">Welcome to Krushna E-SuperBazzar!</h1>
+            <p class="lead mx-auto" style="max-width: 700px;">
+                Inspired by the divine values of Lord Krishna, our online store brings you a seamless shopping experience. From groceries to stationery, we offer top-quality products delivered with trust and devotion.
+            </p>
+            <hr class="my-4" style="width: 60%; margin: auto;">
+            <p class="text-muted mt-4">
+                We believe in simplicity, quality, and devotion in service — just like the teachings of Shri Krishna.
+            </p>
+        </div>
+
+    </div>
+</section>
+</body>
+</html>

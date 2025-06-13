@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{basepage::layout(~{::title}, ~{::section})}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Signup</title>
+</head>
+
+<body>
+<section class="d-flex align-items-center justify-content-center bg-light my-5 py-4">
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="my-card shadow rounded-4 p-5 bg-white">
+
+                    <!-- Flash message (optional) -->
+                    <div th:if="${message}" th:classappend="${message.type}"
+                         class="alert" role="alert" th:text="${message.content}"></div>
+
+                    <h2 class="text-center mb-4 text-primary">📝 Register Here..! 📝</h2>
+
+                    <form th:action="@{/do_register}" method="post">
+                        <!-- Name -->
+                        <div class="mb-2">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                   placeholder="Enter Name" required minlength="3"
+                                   pattern="[A-Za-z\s]+">
+                            <div class="form-text">Name must be at least 3 characters and only letters.</div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-2">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="Enter your email" required>
+                            <div class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="mb-2">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password"
+                                   name="password" placeholder="Enter Password" required
+                                   pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
+                                   title="Password must include letters, numbers, and a special character.">
+                            <div class="form-text">Must contain letters, numbers, and at least one special character (e.g. @, $, !, %).</div>
+                        </div>
+
+                        <!-- About -->
+                        <div class="mb-3">
+                            <label for="about" class="form-label">About</label>
+                            <textarea id="about" name="about" rows="4"
+                                      class="form-control" placeholder="Write something about yourself..."></textarea>
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="form-check mb-4">
+                            <input type="checkbox" name="agreement" class="form-check-input" id="agreement" required />
+                            <label class="form-check-label" for="agreement">Accept Terms and Conditions</label>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="row mt-4">
+                            <div class="col-md-6 d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
+                            <div class="col-md-6 d-grid">
+                                <button type="reset" class="btn btn-secondary btn-lg">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

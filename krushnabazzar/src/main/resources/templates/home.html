@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{basepage::layout(~{::title}, ~{::section})}">
+
+<head>
+    <title th:fragment="title">Home - Krushna Bazzar</title>
+</head>
+
+<body>
+<section>
+    <!-- Hero Section -->
+    <div class="container mt-5 py-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <h1 class="display-4 fw-bold text-primary">Welcome to <span class="text-warning">Krushna E-SuperBazzar</span></h1>
+                <p class="lead mt-3">Your one-stop shop for <strong>grocery</strong> and <strong>stationery</strong> needs — delivered at your doorstep with love and speed.</p>
+                <a th:href="@{/signup}" class="btn btn-warning btn-lg mt-3">
+                    <i class="bi bi-cart-plus-fill"></i> Start Shopping
+                </a>
+            </div>
+            <div class="col-md-6 text-center mt-4 mt-md-0">
+                <img th:src="@{/images/shopping_hero.svg}" alt="Shopping illustration" class="img-fluid" style="max-height: 350px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Why Shop With Us?</h2>
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm p-3">
+                    <i class="bi bi-truck fs-1 text-primary mb-3"></i>
+                    <h5>Fast Delivery</h5>
+                    <p>Get your orders at lightning speed right to your doorstep.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm p-3">
+                    <i class="bi bi-bag-check fs-1 text-success mb-3"></i>
+                    <h5>Wide Selection</h5>
+                    <p>Choose from a wide range of groceries, snacks, and supplies.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm p-3">
+                    <i class="bi bi-shield-lock fs-1 text-danger mb-3"></i>
+                    <h5>Secure Payments</h5>
+                    <p>Your payment and data are safe with our encrypted systems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
