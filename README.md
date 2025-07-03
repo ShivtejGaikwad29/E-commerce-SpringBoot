@@ -67,7 +67,7 @@
 Deploy the project in Apache Tomcat (e.g., via Eclipse/IntelliJ or manually)
 
 4. **Run the Application**
-Access the app at http://localhost:8080/ekrushnae-super-bazzar
+Access the app at http://localhost:8080/home
 
 ## Folder Structure
 ekrushnae-super-bazzar/
