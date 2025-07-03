@@ -84,6 +84,5 @@ ekrushnae-super-bazzar/
 
 👤 Author
 Shivtej Gaikwad
-📧 Email: [your-email@example.com]
-🌐 LinkedIn: [your-linkedin-url]
-💻 GitHub: [your-github-url]
+📧 Email: [krushnaesuperbazzar25@gmail.com]
+🌐 LinkedIn: [www.linkedin.com/in/shivtejgaikwad]
