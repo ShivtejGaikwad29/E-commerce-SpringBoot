@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/userbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title">Confirm - Krushna Bazzar</title>
+  <meta name="category" content="Grocery">
+  <style>
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <div class="container">
+    <div th:if="${order.paymentMethod == 'Cash On Delivery'}">
+      Your Product is on the Way :)
+    </div>
+    <div th:if="${order.paymentMethod != 'Cash On Delivery'}">
+      Please complete your online payment.
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

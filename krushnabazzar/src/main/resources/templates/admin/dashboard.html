@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/adminbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+    <title th:fragment="title">Dashboard - Krushna Bazzar</title>
+    <style>
+        body {
+    background: linear-gradient(to right, #e3f2fd, #ffffff);}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+<section th:fragment="section">
+    <div class="container mt-5">
+        <!-- Flash Message -->
+        <div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert" th:text="${message.content}"></div>
+
+        <h2 class="text-center mb-4" style="color:blue;">Welcome to Admin Dashboard</h2>
+        <p class="text-center text-muted mb-5">Manage categories, users, products, orders, and more.</p>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body">
+                        <i class="bi bi-tags-fill display-4 text-primary mb-3"></i>
+                        <h5 class="card-title">Manage Categories</h5>
+                        <p class="card-text text-muted">Add product categories.</p>
+                        <a href="/admin/show-add-product" class="btn btn-outline-primary btn-sm">Go</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body">
+                        <i class="bi bi-box-seam display-4 text-success mb-3"></i>
+                        <h5 class="card-title">Manage Products</h5>
+                        <p class="card-text text-muted">Update your product inventory here.</p>
+                        <a href="/admin/view-product" class="btn btn-outline-success btn-sm">Go</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body">
+                        <i class="bi bi-people-fill display-4 text-warning mb-3"></i>
+                        <h5 class="card-title">Manage Users</h5>
+                        <p class="card-text text-muted">View and control registered users.</p>
+                        <a href="/admin/users" class="btn btn-outline-warning btn-sm">Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="/admin/reports" class="btn btn-dark">View Reports</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

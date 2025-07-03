@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/userbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+    <title th:fragment="title">Dashboard - Krushna Bazzar</title>
+</head>
+
+<body>
+<section>
+    <div class="container mt-5 pt-4">
+        <div class="row">
+
+            <!-- Flash Message -->
+            <div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert" th:text="${message.content}"></div>
+
+            <!-- Welcome Message -->
+            <div class="col-12 text-center mb-4">
+                <h2>Welcome back, <span th:text="${user.name}">User</span> 🛍️</h2>
+                <p class="text-muted">Here's a quick look at your account activity</p>
+            </div>
+
+            <!-- Profile Overview -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <img th:src="@{/images/person.png}" alt="Profile" class="img-thumbnail rounded-circle mb-2" width="120">
+                        <h5 class="card-title" th:text="${user.name}">Your Name</h5>
+                        <p class="card-text text-muted" th:text="${user.email}">you@example.com</p>
+                        <a th:href="@{/user/profile}" class="btn btn-outline-primary btn-sm mt-2">View Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="col-md-8">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <a th:href="@{/myorder}" class="text-decoration-none">
+                            <div class="card border-0 shadow-sm p-3 h-100">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-bag-check fs-1 text-primary me-3"></i>
+                                    <div>
+                                        <h6 class="mb-0">My Orders</h6>
+                                        <small class="text-muted">Track, return or reorder</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a th:href="@{/user/wishlist}" class="text-decoration-none">
+                            <div class="card border-0 shadow-sm p-3 h-100">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-heart-fill fs-1 text-danger me-3"></i>
+                                    <div>
+                                        <h6 class="mb-0">Wishlist</h6>
+                                        <small class="text-muted">Items you love</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a th:href="@{/category/cart}" class="text-decoration-none">
+                            <div class="card border-0 shadow-sm p-3 h-100">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-cart-fill fs-1 text-success me-3"></i>
+                                    <div>
+                                        <h6 class="mb-0">My Cart</h6>
+                                        <small class="text-muted">Items ready for checkout</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a th:href="@{/user/settings}" class="text-decoration-none">
+                            <div class="card border-0 shadow-sm p-3 h-100">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-gear-fill fs-1 text-secondary me-3"></i>
+                                    <div>
+                                        <h6 class="mb-0">Account Settings</h6>
+                                        <small class="text-muted">Manage your preferences</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end col-md-8 -->
+
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</section>
+</body>
+</html>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/adminbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title">View-product - Krushna Bazzar</title>
+</head>
+
+<body>
+<section>
+  <div class="container mt-5">
+
+    <!--    serach bar-->
+    <div class="search-container my-3 mb-4">
+      <input onkeyup="search()" id="search-input" type="text"
+             class="form-control" placeholder="Search item's here..." />
+      <div class="search-result" style="display: none;">
+        <!-- Result will appear here -->
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+
+    <!-- Error Message -->
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+      <div class="mb-3 text-center">
+        <h3 class="mb-0" style="color:blue;"> All Available Products</h3>
+      </div>
+
+      <a th:href="@{/admin/show-add-product}" class="btn btn-success add-btn">
+        ➕ Add Product
+      </a>
+    </div>
+
+    <div class="row" th:if="${products != null && !products.isEmpty()}">
+      <div class="col-md-4 mb-4" th:each="product : ${products}">
+        <div class="card shadow-sm border-0 rounded-4">
+          <img th:src="@{/images/person.png}" class="card-img-top" alt="Product Image">
+          <div class="card-body">
+            <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+            <span class="badge bg-info text-dark category-badge mb-2" th:text="${product.category}">Category</span>
+            <p class="fw-bold text-success">₹<span th:text="${product.price}">0</span></p>
+            <a th:href="@{/admin/edit-product/{id}(id=${product.id})}" class="btn btn-warning w-100 mt-2">✏️ Edit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:if="${products == null || products.isEmpty()}" class="text-center mt-5">
+      <h5 class="text-muted">No products available right now.</h5>
+    </div>
+  </div>
+</section>
+</body>
+</html>

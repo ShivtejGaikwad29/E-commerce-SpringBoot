@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/userbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+    <title th:fragment="title">MyOrders - Krushna Bazzar</title>
+    <meta name="category" content="Grocery">
+    <style>
+        .card-img-top {
+          height: 200px;
+          object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<section th:fragment="section">
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">My Orders</h2>
+
+        <div th:if="${orders.isEmpty()}">
+            <p class="text-center">You haven't placed any orders yet.</p>
+        </div>
+
+        <div th:each="order : ${orders}" class="card mb-4">
+            <div class="card-header d-flex justify-content-between">
+                <span><strong>Order Date:</strong> <span th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></span></span>
+                <span><strong>Total:</strong> ₹<span th:text="${order.totalAmount}"></span></span>
+                <span><strong>Payment:</strong> <span th:text="${order.paymentMethod}"></span></span>
+            </div>
+            <div class="card-body">
+                <div class="row" th:each="item : ${order.items}">
+                    <div class="col-md-3">
+                        <img th:src="@{/images/default-product.jpg}" class="img-fluid" alt="Product Image">
+                    </div>
+                    <div class="col-md-9">
+                        <h5 th:text="${item.product.name}">Product Name</h5>
+                        <p>Quantity: <span th:text="${item.quantity}"></span></p>
+                        <p>Price: ₹<span th:text="${item.product.price}"></span></p>
+                        <p>Total: ₹<span th:text="${item.quantity * item.product.price}"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

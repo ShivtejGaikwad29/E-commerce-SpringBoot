@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/userbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+    <title th:fragment="title">Settings - Krushna Bazzar</title>
+</head>
+
+<body>
+<section style="min-height: 80vh;"
+         class="bg-light d-flex align-items-center justify-content-center py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow rounded-4 p-4">
+                    <div class="card-body">
+
+                        <!-- Flash Message -->
+                        <div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert" th:text="${message.content}"></div>
+
+                        <h3 class="text-center text-primary mb-4">🔒 Change Password</h3>
+
+                        <form id="changePasswordForm"
+                              th:action="@{/user/change-password}" method="post">
+                            <!-- for old password -->
+                            <div class="form-group mb-3">
+                                <label for="oldpassword" class="form-label">Old
+                                    Password</label> <input name="oldpassword" type="password"
+                                                            class="form-control" id="oldpassword"
+                                                            placeholder="Enter Old Password here..." required>
+                            </div>
+
+
+                            <!-- for new password -->
+                            <div class="form-group mb-4">
+                                <label for="newpassword" class="form-label">New
+                                    Password</label> <input name="newpassword" type="password"
+                                                            class="form-control" id="newpassword"
+                                                            placeholder="Enter New Password here..." required
+                                                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
+                                                            title="Password must be at least 6 characters and include letters, numbers, and a special character.">
+                                <div class="form-text">Must contain letters, numbers, and
+                                    at least one special character (e.g. @, $, !, %, *).</div>
+                            </div>
+
+
+                            <!-- button -->
+                            <div class="text-center">
+                                <button id="changePasswordBtn" class="btn btn-primary me-2 px-4">Change</button>
+                                <button type="reset" class="btn btn-secondary px-4">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<th:block th:fragment="scripts">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    function updatecontact() {
+    const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+    confirmButton: "btn btn-success me-2",
+    cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: false
+    });
+
+    swalWithBootstrapButtons.fire({
+    title: "Are you sure?",
+    text: "Do you really want to change your password?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, change it!",
+    cancelButtonText: "No, cancel!",
+    reverseButtons: true
+    }).then((result) => {
+    if (result.isConfirmed) {
+    document.getElementById("changePasswordForm").submit();
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+    swalWithBootstrapButtons.fire({
+    title: "Cancelled",
+    text: "Your password is not changed.",
+    icon: "error"
+    });
+    }
+    });
+    }
+</th:block>
+
+
+</body>
+</html>

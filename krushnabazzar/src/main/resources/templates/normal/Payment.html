@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/userbasepage::layout(~{::title}, ~{::section})}">
+<head>
+  <title th:fragment="title">Payment - Krushna Bazzar</title>
+  <meta name="category" content="Grocery">
+  <style>
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+<section>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Choose Payment Method</h2>
+
+    <form th:action="@{/order/place}" method="post">
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentMethod" id="cod" value="COD" required>
+        <label class="form-check-label" for="cod">Cash on Delivery</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentMethod" id="online" value="Online" required>
+        <label class="form-check-label" for="online">Online Payment</label>
+      </div>
+
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success">Place Order</button>
+      </div>
+    </form>
+
+  </div>
+</section>
+</body>
+</html>

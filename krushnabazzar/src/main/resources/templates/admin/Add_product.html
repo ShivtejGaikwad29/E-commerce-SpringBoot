@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/adminbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title">Add Product - Krushna Bazzar</title>
+</head>
+
+<body>
+<section>
+  <div class="container mt-5 form-container">
+    <div class="card shadow p-4">
+
+      <!-- Flash Message -->
+
+      <h3 class="text-center mb-4" style="color:blue;">Add New Product</h3>
+
+      <!-- Product Form -->
+      <form th:action="@{/admin/add-products}" method="post" th:object="${product}">
+        <div class="mb-3">
+          <label for="name" class="form-label">Product Name</label>
+          <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter product name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="price" class="form-label">Price (₹)</label>
+          <input type="number" th:field="*{price}" class="form-control" id="price" placeholder="Enter price" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select th:field="*{category}" class="form-select" id="category" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="Grocery">Grocery</option>
+            <option value="Stationary">Stationary</option>
+            <option value="Household">Household</option>
+            <option value="Health">Health</option>
+            <option value="Babycare">Baby</option>
+          </select>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Add Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</body>
+</html>

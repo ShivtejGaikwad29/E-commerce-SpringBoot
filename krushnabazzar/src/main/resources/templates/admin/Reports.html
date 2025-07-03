@@ -1,0 +1,61 @@
+<!-- admin_reports.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/adminbasepage::layout(~{::title}, ~{::section})}">
+<head>
+    <title th:fragment="title">Reports</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<section th:fragment="section">
+    <form method="get" th:action="@{/admin/reports}" class="mb-3">
+        <label for="chart">Select Chart Type:</label>
+        <select name="chart" id="chart" class="form-select w-25 d-inline-block">
+            <option value="bar" th:selected="${chart == 'bar'}">Bar</option>
+            <option value="line" th:selected="${chart == 'line'}">Line</option>
+            <option value="pie" th:selected="${chart == 'pie'}">Pie</option>
+            <option value="doughnut" th:selected="${chart == 'doughnut'}">Doughnut</option>
+            <option value="radar" th:selected="${chart == 'radar'}">Radar</option>
+            <option value="polarArea" th:selected="${chart == 'polarArea'}">Polar Area</option>
+        </select>
+        <button type="submit" class="btn btn-primary ms-2">Generate</button>
+    </form>
+
+    <canvas id="salesChart" width="400" height="200"></canvas>
+
+    <script th:inline="javascript">
+        const ctx = document.getElementById('salesChart').getContext('2d');
+
+        const chartType = /*[[${chart}]]*/ 'bar';
+        const labels = /*[[${categories}]]*/ [];
+        const data = /*[[${orderCounts}]]*/ [];
+
+        const salesChart = new Chart(ctx, {
+          type: chartType,
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Orders',
+              data: data,
+              backgroundColor: [
+                '#42a5f5', '#66bb6a', '#ffa726', '#ef5350', '#ab47bc'
+              ],
+              borderRadius: 10
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: chartType !== 'pie' && chartType !== 'doughnut' },
+              title: {
+                display: true,
+                text: 'Orders by Category'
+              }
+            }
+          }
+        });
+    </script>
+</section>
+
+</body>
+</html>

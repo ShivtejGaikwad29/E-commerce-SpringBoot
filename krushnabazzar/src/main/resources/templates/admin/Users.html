@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/adminbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title">Users - Krushna Bazzar</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #e3f2fd, #ffffff);
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <div class="container mt-4">
+    <div class="card shadow-sm p-4">
+      <h2 class="text-center mb-4" style="color:blue;">Users Registered on Krushna-E-SuperBazaar</h2>
+
+      <table class="table table-striped table-bordered mt-4">
+        <thead>
+        <tr>
+          <th>#ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Enabled</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+          <td th:text="${user.user_id}">1</td>
+          <td th:text="${user.name}">User Name</td>
+          <td>
+            <a th:href="${user.email}" th:text="${user.email}"></a>
+          </td>
+          <td th:text="${user.role}">ROLE_USER</td>
+          <td th:text="${user.enabled}">Active</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

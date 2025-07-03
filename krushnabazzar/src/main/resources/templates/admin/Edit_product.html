@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/adminbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title">Edit Product - Krushna Bazzar</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #e3f2fd, #ffffff);
+    }
+  </style>
+</head>
+
+<body>
+<section>
+  <div class="container mt-5">
+    <h3 class="text-center mb-4" style="color:blue;">Edit Product 📝</h3>
+
+    <form th:action="@{/admin/edit-product}" method="post" th:object="${product}">
+      <input type="hidden" th:field="*{id}"/>
+
+      <div class="mb-3">
+        <input type="text" class="form-control" th:field="*{name}" placeholder="Product Name" required>
+      </div>
+
+      <div class="mb-3">
+        <input type="number" class="form-control" th:field="*{price}" placeholder="Product Price" required>
+      </div>
+
+      <div class="mb-3">
+        <select class="form-control" th:field="*{category}">
+          <option value="Grocery">Grocery</option>
+          <option value="Stationary">Stationary</option>
+          <option value="Household">Household</option>
+          <option value="Health">Health</option>
+          <option value="Baby">Baby</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update Product</button>
+    </form>
+  </div>
+</section>
+</body>
+</html>

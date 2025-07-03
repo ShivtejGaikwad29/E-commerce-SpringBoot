@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/adminbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title">Delete-product - Krushna Bazzar</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #e3f2fd, #ffffff);
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+
+<body>
+<section>
+  <div class="container mt-5">
+
+    <!-- Flash Message -->
+    <div th:if="${message}" class="alert alert-success text-center mb-4" th:text="${message}"></div>
+
+    <!--    serach bar-->
+    <div class="search-container my-3 mb-4">
+      <input onkeyup="search()" id="search-input" type="text"
+             class="form-control" placeholder="Search item's here..." />
+      <div class="search-result" style="display: none;">
+        <!-- Result will appear here -->
+      </div>
+    </div>
+
+    <!-- Proper Heading -->
+    <h3 class="text-center mb-4" style="color:blue;">Delete Products </h3>
+
+    <!-- Product Grid -->
+    <div class="row" th:if="${products != null && !products.isEmpty()}">
+      <div class="col-md-4 mb-4" th:each="product : ${products}">
+        <div class="card shadow-sm border-0 rounded-4">
+          <img th:src="@{/images/default-product.jpg}" class="card-img-top" alt="Product Image">
+          <div class="card-body">
+            <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+            <span class="badge bg-info text-dark category-badge mb-2" th:text="${product.category}">Category</span>
+            <p class="fw-bold text-success">₹<span th:text="${product.price}">0</span></p>
+            <a th:href="@{/admin/delete-product/{id}(id=${product.id})}" class="btn btn-danger w-100">Delete Product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Products -->
+    <div th:if="${products == null || products.isEmpty()}" class="text-center mt-5">
+      <h5>No products available to delete.</h5>
+    </div>
+
+  </div>
+</section>
+</body>
+</html>

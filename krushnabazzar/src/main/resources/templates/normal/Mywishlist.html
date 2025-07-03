@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/userbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title">MyOrders - Krushna Bazzar</title>
+  <meta name="wishlist">
+  <style>
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+<section>
+  <div class="container mt-4">
+    <h2 class="text-center mb-4">My Wishlist</h2>
+
+    <!-- Flash Message -->
+    <div th:if="${message}" class="alert alert-success alert-dismissible fade show" role="alert">
+      <span th:text="${message}">Flash message here</span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div th:if="${wishlistitems != null and #lists.isEmpty(wishlistitems)}">
+      <p class="text-center">Your Wishlist is empty.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-4" th:each="wishlist : ${wishlistitems}">
+        <div class="card shadow-sm">
+          <img th:src="@{/images/default-product.jpg}" class="card-img-top" alt="Product Image">
+          <div class="card-body">
+            <h5 class="card-title" th:text="${wishlist.product.name}">Product Name</h5>
+            <p class="text-success fw-bold">₹<span th:text="${wishlist.product.price}"></span></p>
+            <a th:href="@{/category/remove/{itemId}(itemId=${wishlist.product.id})}"
+               class="btn btn-danger btn-sm mt-2 w-100">
+              Remove From Wishlist
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</body>
+</html>

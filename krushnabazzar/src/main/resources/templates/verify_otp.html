@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{basepage::layout(~{::title}, ~{::section})}">
+<head>
+    <meta charset="UTF-8" />
+    <title th:fragment="title">Verify-OTP - Krushna Bazzar</title>
+</head>
+<body>
+<section style="min-height: 90vh;"
+         class="d-flex align-items-center justify-content-center bg-light mt-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="my-card shadow rounded-4 p-5 bg-white">
+
+                    <!-- email form -->
+
+                    <div class="alert alert-success mt-3" role="alert">
+                        We have sent OTP to your email...
+                    </div>
+
+
+                    <form method="post" th:action="@{/verify-otp}">
+                        <div class="form-group m-4">
+                            <input required="required" name="otp" type="text" placeholder="Enter OTP Here"
+                                   class="form-control" />
+                        </div>
+
+                        <div class="container mt-2 text-center">
+                            <button type="submit" class="btn btn-success">Verify</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

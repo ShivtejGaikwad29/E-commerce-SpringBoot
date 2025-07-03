@@ -8,65 +8,62 @@
 
 <body>
 <section>
-    <section style="padding-top: 150px;"
-             class="d-flex align-items-center justify-content-center bg-light mt-2">
+    <!-- Login Section -->
+    <section class="d-flex align-items-center justify-content-center bg-light mt-2" style="padding-top: 105px;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="my-card shadow rounded-4 p-5 bg-white">
-                        <!-- Flash Message -->
-                        <div th:if="${message}" th:classappend="${message.type}"
-                             class="alert" role="alert" th:text="${message.content}"></div>
 
+                        <!-- Flash Message -->
+                        <div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert" th:text="${message.content}"></div>
+
+                        <!-- Heading -->
                         <h2 class="text-center mb-4 text-primary">🔐 Login Here..!</h2>
 
-<!--                        <div th:if="${param.error}" class="alert alert-danger">-->
-<!--                            Invalid Username and Password..!</div>-->
+                        <!-- Login Errors -->
+                        <div th:if="${param.error}" class="alert alert-danger">Invalid Username and Password..!</div>
+                        <div th:if="${param.logout}" class="alert alert-success">You have been logged out..!</div>
 
-<!--                        <div th:if="${param.logout}" class="alert alert-success">-->
-<!--                            You have been logged out..!</div>-->
-
-<!--                        <div th:if="${param.change}" class="alert alert-success">-->
-<!--                            <p th:text="${param.change}"></p>-->
-<!--                        </div>-->
-
-
-                        <!-- Login Form -->
+                        <!-- Login Form Start -->
                         <form th:action="@{/dologin}" method="post">
 
                             <!-- Email -->
                             <div class="mb-3">
-                                <label for="username" class="form-label">Email address</label> <input
-                                    type="email" class="form-control" id="username" name="username"
-                                    placeholder="Enter your email" required>
+                                <label for="username" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="username" name="username"
+                                       placeholder="Enter your email" required>
                             </div>
 
                             <!-- Password -->
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label> <input
-                                    type="password" class="form-control" id="password"
-                                    name="password" placeholder="Enter Password" required>
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="Enter password" required>
                             </div>
 
-                            <!-- Login Button -->
-                            <div class="row mt-4">
+                            <!-- Buttons: Login, Admin, Register -->
+                            <div class="row mt-4 gy-2">
                                 <div class="col-md-6 d-grid">
-                                    <button type="submit"  class="btn btn-primary btn-lg">Login</button>
+                                    <button type="submit" class="btn btn-primary btn-lg">Login</button>
                                 </div>
 
                                 <div class="col-md-6 d-grid">
-                                    <a th:href="@{signup}" class="btn btn-secondary btn-lg">Register</a>
+                                    <button type="button" class="btn btn-danger btn-lg" onclick="loginAsAdmin()">Login as Admin</button>
+                                </div>
+
+                                <div class="col-md-12 mt-4 d-grid">
+                                    <a th:href="@{/signup}" class="btn btn-secondary btn-lg">Register</a>
                                 </div>
                             </div>
 
                             <!-- Forgot Password -->
                             <div class="text-center mt-3">
-                                <a th:href="@{forgot}" class="text-muted small">Forgot
-                                    password?</a>
+                                <a th:href="@{/forgot}" class="text-muted small">Forgot password?</a>
                             </div>
 
                         </form>
-                        <!-- End of Form -->
+                        <!-- Login Form End -->
 
                     </div>
                 </div>
@@ -82,6 +79,14 @@
                 flashMessage.style.display = 'none';
             }
         }, 3000);
+    </script>
+
+    <!-- Login as Admin Script -->
+    <script>
+        function loginAsAdmin() {
+            document.getElementById("username").value = "admin@bazaar.com";
+            document.getElementById("password").focus();
+        }
     </script>
 </section>
 </body>

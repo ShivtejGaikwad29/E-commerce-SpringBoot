@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/adminbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title" th:text="'Product - ' + ${product.name}">Product</title>
+</head>
+
+<body>
+<section>
+  <div class="container mt-5">
+    <div class="card">
+      <img th:src="@{/images/default-product.jpg}" class="card-img-top" alt="Product Image" />
+      <div class="card-body">
+        <h4 class="card-title" th:text="${product.name}">Product Name</h4>
+        <p><strong>Category:</strong> <span th:text="${product.category}"></span></p>
+        <p><strong>Price:</strong> ₹<span th:text="${product.price}"></span></p>
+        <a th:href="@{/admin/edit-product/{id}(id=${product.id})}" class="btn btn-warning w-100 mt-2 mb-2">✏️ Edit</a>
+        <a th:href="@{/admin/delete-product/{id}(id=${product.id})}" class="btn btn-danger w-100">Delete Product</a>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

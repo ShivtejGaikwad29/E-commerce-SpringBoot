@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/userbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title">Mycart - Krushna Bazzar</title>
+  <meta name="category" content="Grocery">
+  <style>
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">My Cart</h2>
+
+      <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+      <div th:if="${cart != null and #lists.isEmpty(cart.items)}">
+      <p class="text-center">Your cart is empty.</p>
+      </div>
+
+      <div th:if="${cart != null and not #lists.isEmpty(cart.items)}">
+        <div class="row">
+          <div class="col-md-4 mb-3" th:each="item : ${cart.items}">
+            <div class="card h-100">
+              <img th:src="@{/images/default-product.jpg}" class="card-img-top" alt="Product Image">
+              <div class="card-body">
+                <h5 class="card-title" th:text="${item.product.name}">Product Name</h5>
+                <p>Quantity: <span th:text="${item.quantity}"></span></p>
+                <p>Price: ₹<span th:text="${item.product.price}"></span></p>
+                <p>Total: ₹<span th:text="${item.quantity * item.product.price}"></span></p>
+                <a th:href="@{/category/removefromcart/{itemId}(itemId=${item.id})}"
+                   class="btn btn-danger btn-sm mt-2 w-100">
+                  Remove From Cart
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <hr>
+        <h4 class="text-end">Total Price: ₹<span th:text="${cart.totalPrice}"></span></h4>
+      </div>
+
+      <form th:action="@{/order/place}" method="post">
+        <div class="mb-3">
+          <label>Select Payment Method:</label><br>
+          <input type="radio" name="paymentMethod" value="Cash On Delivery" checked> Cash On Delivery<br>
+          <input type="radio" name="paymentMethod" value="Online Payment"> Online Payment
+        </div>
+        <button type="submit" class="btn btn-primary float-end mb-3">Place Order</button>
+      </form>
+
+
+    </div>
+  </section>
+
+</body>
+</html>

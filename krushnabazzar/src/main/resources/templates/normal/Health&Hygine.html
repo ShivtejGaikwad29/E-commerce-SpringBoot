@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/userbasepage::layout(~{::title}, ~{::section})}">
+
+<head>
+  <title th:fragment="title">Health and Hygine - Krushna Bazzar</title>
+  <meta name="category" content="Health">
+</head>
+
+<body>
+<section>
+  <div class="container mt-2">
+    <h2 class="text-center mb-4">Health Items</h2>
+
+    <!-- Flash Message -->
+    <div th:if="${message}" class="alert alert-success alert-dismissible fade show" role="alert">
+      <span th:text="${message}">Flash message here</span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!--    serach bar-->
+    <div class="search-container my-3 mb-4">
+      <input onkeyup="search()" id="search-input" type="text"
+             class="form-control" placeholder="Search item's here..." />
+      <div class="search-result" style="display: none;">
+        <!-- Result will appear here -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-4" th:each="product : ${products}">
+        <div class="card shadow-sm">
+          <img th:src="@{/images/default-product.jpg}" class="card-img-top" alt="Product Image">
+          <div class="card-body">
+            <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+            <p class="card-text">Standard Health Care item.</p>
+            <p class="text-success fw-bold">₹<span th:text="${product.price}"></span></p>
+            <a th:href="@{'/category/addtowishlist/' + ${product.id} + '?redirect=' + ${product.category}}" class="btn btn-primary w-100 mb-2"><i class="bi bi-heart-fill me-2"></i>Add To Wishlist</a>
+            <a th:href="@{'/category/addtocart/' + ${product.id} + '?redirect=health'}" class="btn btn-success w-100"><i class="bi bi-cart-fill me-2"></i>Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
